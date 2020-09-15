@@ -192,7 +192,7 @@ include 'connection.php';
 			<ul> 
 			<li><a href=transfer.php>Transfer Credit</a></li>
 			<li><a href=Userslist.php>Users List</a></li>
-            <li><a href=tsf.php>Home</a></li>
+                        <li><a href=index.php>Home</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -239,37 +239,35 @@ include 'connection.php';
 
 			if($u1!="" && $u2!="" && $amt!="")
 			{
-				
+				//update transaction changes in database
 				$query1= "UPDATE View_users  SET Credit = Credit + '$amt' WHERE Name = '$u2' ";
 				$data1= mysqli_query($conn, $query1);
 				$query2= "UPDATE  View_users  SET Credit = Credit  - '$amt' WHERE Name = '$u1' ";
 				$data2= mysqli_query($conn, $query2);
+				
 				//insert into transaction_history
 				    $query1 = "INSERT INTO transaction_history (from_user,to_user,Credit) VALUES('$u1','$u2','$amt')";
-                     $res2 = mysqli_query($conn,$query1);
-                                  if($res2){
-			
-		                           	$user1 = "SELECT * FROM View_users WHERE  Name='$u1' ";
-                                    $res=mysqli_query($conn,$user1);
-                                    $row_count=mysqli_num_rows($res);
-			                          }
+                                    $res2 = mysqli_query($conn,$query1);
+				
+                                          if($res2){
+		                           	 $user1 = "SELECT * FROM View_users WHERE  Name='$u1' ";
+                                                 $res=mysqli_query($conn,$user1);
+                                                 $row_count=mysqli_num_rows($res);
+			                      }
 				
             
 
 				     if ($data1 && $data2)
-				{
+				     {
 					$message="Successful transfer";
-                    echo "<script type='text/javascript'>alert('$message');
-                    </script>";
-					//echo $bl1;
-					//echo $bl2;
-
+                                        echo "<script type='text/javascript'>alert('$message');
+                                        </script>";
 				}
 				else
 				{
 					$message="Error While Commiting Transaction ";
 					echo "<script type='text/javascript'>alert('$message');
-                    </script>";
+                                        </script>";
 				}
 
 			}
