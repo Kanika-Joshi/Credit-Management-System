@@ -95,7 +95,7 @@ body
 		<nav>
 		<div class='logo'> TSF </div>
 			<ul> 
-				<li><a href=tsf.php>Home</a></li>
+				<li><a href=index.php>Home</a></li>
 				<li><a href=Userslist.php>Users List</a></li>
 				<li><a href=transfer.php>Transfer Credit</a></li>
 			</ul>
